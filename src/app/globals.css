@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Audiophile Design System Colors & Tokens */
+@theme inline {
+  /* Font Family */
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  
+  /* Primary Colors */
+  --color-primary: #D87D4A;
+  --color-primary-light: #FBAF85;
+  --color-primary-dark: #D87D4A;
+  
+  /* Neutral Colors */
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-gray-light: #F1F1F1;
+  --color-gray: #FAFAFA;
+  
+  /* Semantic Colors */
+  --color-background: #FAFAFA;
+  --color-foreground: #000000;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #000000;
+  
+  /* Form States */
+  --color-error: #CD2C2C;
+  --color-input-border: #CFCFCF;
+  --color-border: #CFCFCF;
+  --color-ring: #D87D4A;
+  
+  /* Radius */
+  --radius: 0.5rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
