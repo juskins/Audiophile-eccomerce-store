@@ -15,7 +15,7 @@ export default function EarphonesPage() {
       </section>
 
       <section className="container mx-auto px-6 py-20 md:px-10 lg:px-[165px]">
-        <div className="grid gap-24 lg:grid-cols-2 lg:items-center">
+        <div className="grid md:gap-24 lg:grid-cols-2 lg:items-center">
           {/* YX1 - image left */}
           <div>
             <div className="mx-auto w-full max-w-[520px] rounded-lg bg-gray p-8">
@@ -30,7 +30,7 @@ export default function EarphonesPage() {
             </div>
           </div>
 
-          <div>
+          <div className=" w-full max-w-lg text-center lg:text-left">
             <p className="mb-4 text-sm uppercase tracking-[10px] text-primary">New Product</p>
             <h2 className="mb-6 text-3xl font-bold uppercase leading-[38px] tracking-[2px] md:text-4xl">YX1 Wireless Earphones</h2>
             <p className="mb-6 max-w-lg text-[15px] font-medium leading-[25px] text-black/60">

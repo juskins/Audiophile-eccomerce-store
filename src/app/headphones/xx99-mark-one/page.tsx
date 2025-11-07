@@ -51,7 +51,7 @@ export default function XX99MarkOnePage() {
                </div>
 
                {/* Product Info */}
-               <div className="lg:max-w-[445px]">
+               <div className="lg:max-w-[445px] text-center lg:text-left">
                   <h1 className="mb-6 text-[28px] font-bold uppercase leading-[32px] tracking-[1px] md:text-[40px] md:leading-[44px] md:tracking-[1.5px]">
                      XX99 Mark I Headphones
                   </h1>

@@ -61,7 +61,7 @@ export function Footer() {
                 className="text-white transition-colors hover:text-primary"
                 aria-label="Facebook"
               >
-                <Facebook className="h-6 w-6" fill="currentColor" />
+                <Facebook className="h-6 w-6" fill="" />
               </a>
               <a
                 href="https://twitter.com"
@@ -79,7 +79,7 @@ export function Footer() {
                 className="text-white transition-colors hover:text-primary"
                 aria-label="Instagram"
               >
-                <Instagram className="h-6 w-6" fill="currentColor" />
+                <Instagram className="h-6 w-6" fill="" />
               </a>
             </div>
           </div>

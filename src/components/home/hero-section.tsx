@@ -21,7 +21,7 @@ export function HeroSection() {
             {/* Description */}
             <p className="mb-7 text-[15px] font-medium leading-[25px] text-white/75 md:mb-10">
               Experience natural, lifelike audio and exceptional build quality
-              made for the passionate music enthusiast.
+              made for the passionate music <br /> enthusiast.
             </p>
 
             {/* CTA Button */}

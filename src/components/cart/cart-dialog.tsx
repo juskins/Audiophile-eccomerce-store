@@ -37,7 +37,7 @@ export function CartDialog() {
       />
 
       {/* Cart Modal */}
-      <div className="fixed top-[90px] right-0 z-50 w-full max-w-[377px] mx-6 md:mx-10 lg:right-[165px] lg:mx-0">
+      <div className="fixed md:top-[90px] md:right-0 z-50 md:w-full w-[90%] max-w-[377px] mx-6 md:mx-10 lg:right-[165px] lg:mx-0">
         <div className="bg-white rounded-lg p-8 shadow-xl">
           {/* Header */}
           <div className="flex items-center justify-between mb-8">

@@ -9,20 +9,27 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { createOrder } from "@/lib/actions";
+import { CircleCheck } from "lucide-react";
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { items, total } = useCart();
+  const { items, total, clearCart } = useCart();
   const [paymentMethod, setPaymentMethod] = useState<"e-money" | "cash">(
     "e-money"
   );
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [orderId, setOrderId] = useState<string | null>(null);
 
   const subtotal = total;
   const shipping = 50;
   const vat = Math.round(subtotal * 0.2);
   const grandTotal = subtotal + shipping;
+
+  // Get the first item and count of remaining items for modal
+  const firstItem = items[0];
+  const remainingCount = items.length - 1;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -92,9 +99,13 @@ export default function CheckoutPage() {
       const result = await createOrder(orderData);
 
       if (result.success) {
-        // Store order ID in session storage for success page
-        sessionStorage.setItem("lastOrderId", result.orderId!);
-        router.push("/checkout/success");
+        // Show success modal instead of redirecting
+        setOrderId(result.orderId!);
+        setShowSuccessModal(true);
+        // Clear cart after a delay
+        // setTimeout(() => {
+        //   clearCart();
+        // }, 3000);
       } else {
         setErrors({ submit: "Failed to create order. Please try again." });
       }
@@ -363,6 +374,92 @@ export default function CheckoutPage() {
           </div>
         </form>
       </div>
+
+      {/* Success Modal Overlay */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-6">
+          <div className="bg-white rounded-lg p-8 md:p-12 max-w-[540px] w-full">
+            <div className="mb-6">
+              <CircleCheck className="w-16 h-16 text-primary" strokeWidth={1.5} />
+            </div>
+
+            <h1 className="text-[24px] md:text-[32px] font-bold tracking-[0.86px] md:tracking-[1.14px] uppercase mb-4 md:mb-6 leading-[28px] md:leading-[36px]">
+              Thank you
+              <br />
+              for your order
+            </h1>
+
+            <p className="text-[15px] leading-[25px] text-black/50 mb-4">
+              You will receive an email confirmation shortly.
+            </p>
+
+            {orderId && (
+              <div className="bg-gray-light p-4 rounded mb-6">
+                <p className="text-[13px] text-black/50 mb-1">Order ID</p>
+                <p className="text-[15px] font-bold text-primary">{orderId}</p>
+              </div>
+            )}
+
+            <div className="rounded-lg overflow-hidden mb-6 md:flex">
+              {/* Order Items */}
+              <div className="bg-gray p-6 md:flex-1">
+                {firstItem && (
+                  <div className="flex items-center gap-4 pb-3 mb-3 border-b border-black/10">
+                    <div className="w-[50px] h-[50px] rounded-lg overflow-hidden bg-gray-light flex-shrink-0">
+                      <Image
+                        src={firstItem.image}
+                        alt={firstItem.name}
+                        width={50}
+                        height={50}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-[15px] font-bold leading-[25px] truncate">
+                        {firstItem.shortName}
+                      </h3>
+                      <p className="text-[14px] font-bold leading-[25px] text-black/50">
+                        $ {firstItem.price.toLocaleString()}
+                      </p>
+                    </div>
+                    <div className="text-[15px] font-bold leading-[25px] text-black/50">
+                      x{firstItem.quantity}
+                    </div>
+                  </div>
+                )}
+
+                {remainingCount > 0 && (
+                  <p className="text-[12px] font-bold leading-[16px] tracking-[-0.21px] text-black/50 text-center">
+                    and {remainingCount} other item{remainingCount > 1 ? "s" : ""}
+                  </p>
+                )}
+              </div>
+
+              {/* Grand Total */}
+              <div className="bg-black p-6 md:w-[198px] flex flex-col justify-end">
+                <p className="text-[15px] leading-[25px] text-white/50 uppercase mb-2">
+                  Grand Total
+                </p>
+                <p className="text-[18px] font-bold text-white">
+                  $ {grandTotal.toLocaleString()}
+                </p>
+              </div>
+            </div>
+
+            <Button 
+              variant="primary" 
+              className="w-full" 
+              onClick={() => {
+                setShowSuccessModal(false);
+                clearCart();
+                router.push("/");
+              }}
+            >
+              Back to Home
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

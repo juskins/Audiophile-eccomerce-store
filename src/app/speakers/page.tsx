@@ -15,7 +15,7 @@ export default function SpeakersPage() {
          </section>
 
          <section className="container mx-auto px-6 py-20 md:px-10 lg:px-[165px]">
-            <div className="grid gap-24 lg:grid-cols-2 lg:items-center">
+            <div className="grid md:gap-24 lg:grid-cols-2 lg:items-center">
                {/* ZX9 Speaker - image left */}
                <div>
                   <div className="mx-auto w-full max-w-[520px] rounded-lg bg-gray-light px-8 py-12 lg:px-12">
@@ -30,7 +30,7 @@ export default function SpeakersPage() {
                   </div>
                </div>
 
-               <div className=" w-full max-w-lg">
+               <div className=" w-full max-w-lg text-center lg:text-left">
                   <p className="mb-4 text-sm uppercase tracking-[10px] text-primary">New Product</p>
                   <h2 className="mb-6 text-3xl font-bold uppercase leading-[38px] tracking-[2px] md:text-4xl">ZX9 Speaker</h2>
                   <p className="mb-6 max-w-lg text-[15px] font-medium leading-[25px] text-black/60">
@@ -43,8 +43,8 @@ export default function SpeakersPage() {
             </div>
 
             {/* ZX7 - image right */}
-            <div className="mt-24 grid gap-24 lg:grid-cols-2 lg:items-center">
-               <div>
+            <div className="mt-24 grid md:gap-24 lg:grid-cols-2 lg:items-center">
+               <div className="max-w-lg text-center lg:text-left order-2 lg:order-1">
                   <h2 className="mb-6 text-3xl font-bold uppercase leading-[38px] tracking-[2px] md:text-4xl">ZX7 Speaker</h2>
                   <p className="mb-6 max-w-md text-[15px] font-medium leading-[25px] text-black/60">
                      Stream high quality sound wirelessly with minimal loss. The ZX7 bookshelf speaker

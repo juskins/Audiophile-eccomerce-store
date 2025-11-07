@@ -16,8 +16,8 @@ export default function HeadphonesPage() {
          </section>
 
          {/* Products list */}
-         <section className="container mx-auto px-6 py-20 md:px-10 lg:px-[165px] ">
-            <div className="grid gap-24 lg:grid-cols-2 lg:items-center">
+         <section className="container mx-auto px-6 md:py-20 md:px-10 lg:px-[165px] ">
+            <div className="grid md:gap-24 lg:grid-cols-2 lg:items-center">
                {/* XX99 Mark II - left image */}
                <div className="order-1 lg:order-1">
                   <div className="mx-auto w-full max-w-[520px] rounded-lg bg-gray p-8">
@@ -32,7 +32,7 @@ export default function HeadphonesPage() {
                   </div>
                </div>
 
-               <div className="order-2 lg:order-2 w-full max-w-lg">
+               <div className="order-2 lg:order-2 w-full max-w-lg text-center lg:text-left">
                   <p className="mb-4 text-sm uppercase tracking-[10px] text-primary">New Product</p>
                   <h2 className="mb-6 text-3xl font-bold uppercase leading-[38px] tracking-[2px] md:text-4xl">XX99 Mark II Headphones</h2>
                   <p className="mb-6 max-w-lg text-[15px] font-medium leading-[25px] text-black/60">
@@ -47,8 +47,8 @@ export default function HeadphonesPage() {
             </div>
 
             {/* Second product - XX99 Mark I (image on right) */}
-            <div className="mt-24 grid gap-24 lg:grid-cols-2 lg:items-center ">
-               <div className="order-2 lg:order-1">
+            <div className="mt-24 grid md:gap-24 lg:grid-cols-2 lg:items-center ">
+               <div className="order-2 lg:order-1 max-w-lg text-center lg:text-left">
                   <h2 className="mb-6 text-3xl font-bold uppercase leading-[38px] tracking-[2px] md:text-4xl">XX99 Mark I Headphones</h2>
                   <p className="mb-6 max-w-lg text-[15px] font-medium leading-[25px] text-black/60">
                      As the gold standard for headphones, the classic XX99 Mark I offers
@@ -73,9 +73,10 @@ export default function HeadphonesPage() {
                   </div>
                </div>
             </div>
+            
 
             {/* Third product - XX59 */}
-            <div className="mt-24 grid gap-24 lg:grid-cols-2 lg:items-center">
+            <div className="mt-24 grid md:gap-24 lg:grid-cols-2 lg:items-center">
                <div className="order-1">
                   <div className="mx-auto w-full max-w-[520px] rounded-lg bg-gray p-8">
                      <div className="relative h-[320px] w-full">
@@ -89,7 +90,7 @@ export default function HeadphonesPage() {
                   </div>
                </div>
 
-               <div className="order-2">
+               <div className="order-2 max-w-lg text-center lg:text-left">
                   <h3 className="mb-6 text-2xl font-bold uppercase tracking-[1px]">XX59 Headphones</h3>
                   <p className="mb-6 max-w-md text-[15px] font-medium leading-[25px] text-black/60">
                      Enjoy your audio almost anywhere and customize it to your specific

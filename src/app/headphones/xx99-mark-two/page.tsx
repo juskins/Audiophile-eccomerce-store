@@ -51,7 +51,7 @@ export default function XX99MarkTwoPage() {
           </div>
 
           {/* Product Info */}
-          <div className="lg:max-w-[445px]">
+          <div className="lg:max-w-[445px] text-center lg:text-left">
             <p className="mb-4 text-sm font-bold uppercase tracking-[10px] text-primary">
               New Product
             </p>

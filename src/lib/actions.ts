@@ -30,9 +30,18 @@ export async function createOrder(orderData: OrderData) {
     // Save order to Convex via HTTP API
     const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL;
     
+    console.log("Environment check:", {
+      convexUrl,
+      appUrl: process.env.NEXT_PUBLIC_APP_URL,
+      hasSmtpUser: !!process.env.SMTP_USER,
+    });
+    
     if (!convexUrl) {
-      throw new Error("NEXT_PUBLIC_CONVEX_URL is not configured");
+      console.error("NEXT_PUBLIC_CONVEX_URL is missing!");
+      throw new Error("NEXT_PUBLIC_CONVEX_URL is not configured. Please add it to Netlify environment variables.");
     }
+
+    console.log("Attempting to save order to Convex...");
 
     // Call Convex mutation via HTTP
     const response = await fetch(`${convexUrl}/api/mutation`, {
@@ -50,7 +59,8 @@ export async function createOrder(orderData: OrderData) {
     if (!response.ok) {
       const errorText = await response.text();
       console.error("Convex error response:", errorText);
-      throw new Error(`Failed to create order in Convex: ${response.status}`);
+      console.error("Response status:", response.status);
+      throw new Error(`Failed to create order in Convex: ${response.status} - ${errorText}`);
     }
 
     const result = await response.json();
@@ -88,7 +98,14 @@ export async function createOrder(orderData: OrderData) {
     return { success: true, orderId, convexId: convexOrderId };
   } catch (error) {
     console.error("Order creation error:", error);
-    return { success: false, error: "Failed to create order" };
+    console.error("Error details:", {
+      message: error instanceof Error ? error.message : "Unknown error",
+      stack: error instanceof Error ? error.stack : undefined,
+    });
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : "Failed to create order. Please check console for details."
+    };
   }
 }
 

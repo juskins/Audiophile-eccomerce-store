@@ -17,10 +17,10 @@ export function Header() {
   ];
 
   return (
-     <header className="bg-black px-[165px]">
-      <div className="container mx-auto">
+    <header className="bg-black">
+      <div className="container mx-auto px-6 md:px-10 lg:px-[165px]">
         {/* Desktop & Mobile Header */}
-        <div className="flex items-center justify-between border-b border-white/10 px-6 py-8 md:px-10 lg:px-0">
+        <div className="flex items-center justify-between border-b border-white/10 py-8 lg:py-9">
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -28,19 +28,22 @@ export function Header() {
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6 text-white" />
+              <X className="h-4 w-4 text-white" />
             ) : (
-              <Menu className="h-6 w-6 text-white" />
+              <Menu className="h-4 w-4 text-white" />
             )}
           </button>
 
-          {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-white">
+          {/* Logo - Centered on mobile, left on desktop */}
+          <Link 
+            href="/" 
+            className="absolute left-1/2 -translate-x-1/2 text-[25px] font-bold text-white lg:relative lg:left-0 lg:translate-x-0"
+          >
             audiophile
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:block">
+          <nav className="hidden lg:block lg:ml-auto lg:mr-auto">
             <ul className="flex items-center gap-8">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -58,10 +61,10 @@ export function Header() {
           {/* Cart Icon */}
           <button
             onClick={openCart}
-            className="relative"
+            className="relative ml-auto lg:ml-0"
             aria-label="Shopping cart"
           >
-            <ShoppingCart className="h-6 w-6 text-white hover:text-primary transition-colors" />
+            <ShoppingCart className="h-[23px] w-[23px] text-white hover:text-primary transition-colors" />
             {itemCount > 0 && (
               <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">
                 {itemCount}
